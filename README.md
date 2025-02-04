@@ -1,6 +1,6 @@
 # Introducción
 
-El módulo de helpdesk es una herramienta diseñada para gestionar y resolver de manera eficiente las solicitudes y problemas técnicos de los usuarios. Funciona como un punto único de contacto para recibir, categorizar y asignar tickets de soporte, facilitando así la comunicación entre el equipo de TI y los usuarios finales.
+El módulo de helpdesk es una herramienta diseñada para gestionar y resolver de manera eficiente las solicitudes y problemas técnicos de los usuarios. Funciona como un punto único de contacto para recibir, categorizar y asignar tickets de soporte, facilitando así la comunicación entre el equipo de Soporte y los usuarios finales.
 
 ## Pasos para instalarlo
 

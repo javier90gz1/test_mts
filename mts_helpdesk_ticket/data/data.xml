@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <odoo>
+<!--    Create category -->
     <record model="ir.module.category" id="help_desk">
         <field name="name">Helpdesk</field>
          <field name="sequence">25</field>
