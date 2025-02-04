@@ -20,18 +20,28 @@
         <field name="arch" type="xml">
             <form string="Help Desk Ticket">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,done" options="{'clickable': '1'}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,done" options="{'clickable': '1'}" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    <button class="btn btn-primary" name="action_check_done" type="object" string="Check Done" attrs="{'invisible': [('state', '=', 'done')]}"/>
                 </header>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="client_id"/>
-                        <field name="user_assigned_id"/>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="client_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="user_assigned_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
                     </group>
-                    <group>
-                        <field name="description"/>
-                    </group>
+                    <notebook>
+                        <page string="Ticket Description">
+                            <field name="description" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </page>
+                    </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" options="{'post_refresh': 'recipients'}"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
