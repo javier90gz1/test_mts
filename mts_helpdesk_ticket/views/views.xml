@@ -19,11 +19,13 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <form string="Help Desk Ticket">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,done" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="client_id"/>
-                        <field name="state"/>
                         <field name="user_assigned_id"/>
                     </group>
                     <group>

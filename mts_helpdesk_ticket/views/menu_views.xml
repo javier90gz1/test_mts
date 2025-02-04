@@ -3,12 +3,13 @@
     <record id="action_helpdesk_ticket" model="ir.actions.act_window">
         <field name="name">Help Desk Tickets</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
+
     </record>
 
-    <menuitem id="menu_helpdesk_main" name="Help Desk" sequence="1" web_icon="mts_helpdesk_ticket,static/description/icon.png"/>
+    <menuitem id="menu_helpdesk_main" name="Help Desk" sequence="1" web_icon="mts_helpdesk_ticket,static/description/icon.png" groups="group_helpdesk_user,group_helpdesk_manager"/>
 
-    <menuitem id="menu_helpdesk_ticket" name="Tickets" parent="mts_helpdesk_ticket.menu_helpdesk_main" action="action_helpdesk_ticket" sequence="1"/>
+    <menuitem id="menu_helpdesk_ticket" name="Tickets" parent="mts_helpdesk_ticket.menu_helpdesk_main" action="action_helpdesk_ticket" sequence="1" groups="group_helpdesk_user,group_helpdesk_manager"/>
 
 
 </odoo>
