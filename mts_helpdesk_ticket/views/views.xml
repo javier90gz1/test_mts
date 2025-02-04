@@ -1,0 +1,142 @@
+<odoo>
+  <data>
+    <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Help Desk Tickets">
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="user_assigned_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Help Desk Ticket">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,done" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    <button class="btn btn-primary" name="action_check_in_progress" type="object" string="Check In progress" attrs="{'invisible': [('state', '!=', 'new')]}"/>
+                    <button class="btn btn-primary" name="action_check_done" type="object" string="Check Done" attrs="{'invisible': [('state', '=', 'done')]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="client_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="user_assigned_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ticket Description">
+                            <field name="description" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" options="{'post_refresh': 'recipients'}"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <odoo>
+    <record id="view_helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.kanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban string="Help Desk Tickets" default_group_by="state">
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="user_assigned_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_details">
+                                <h2 style="text-align: center;">
+                                    <field name="name"/>
+                                </h2>
+                                <p><field name="client_id"/></p>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div><field name="create_date" widget="date"/></div>
+                                    <div><field name="user_assigned_id"/></div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
+
+
+    <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search string="Help Desk Tickets">
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="user_assigned_id"/>
+            </search>
+        </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="mts_helpdesk_ticket.action_window">
+      <field name="name">mts_helpdesk_ticket window</field>
+      <field name="res_model">mts_helpdesk_ticket.mts_helpdesk_ticket</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="mts_helpdesk_ticket.action_server">
+      <field name="name">mts_helpdesk_ticket server</field>
+      <field name="model_id" ref="model_mts_helpdesk_ticket_mts_helpdesk_ticket"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="mts_helpdesk_ticket" id="mts_helpdesk_ticket.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="mts_helpdesk_ticket.menu_1" parent="mts_helpdesk_ticket.menu_root"/>
+    <menuitem name="Menu 2" id="mts_helpdesk_ticket.menu_2" parent="mts_helpdesk_ticket.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="mts_helpdesk_ticket.menu_1_list" parent="mts_helpdesk_ticket.menu_1"
+              action="mts_helpdesk_ticket.action_window"/>
+    <menuitem name="Server to list" id="mts_helpdesk_ticket" parent="mts_helpdesk_ticket.menu_2"
+              action="mts_helpdesk_ticket.action_server"/>
+-->
+  </data>
+</odoo>
