@@ -5,8 +5,8 @@
     'description': """
         Save the incidents that occurred to customers and assign them to a user to solve them.
     """,
-    'author': "Grupo Madetosoft SL",
-    'website': "https://www.madetosoft.com/",
+    'author': "Javier Alfonso González de Zayas",
+    'website': "",
     'category': 'HelpDesk',
     'version': '16.0.1',
 
